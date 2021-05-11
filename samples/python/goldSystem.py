@@ -23,7 +23,7 @@ def addGold(amount, id):
         json.dump(load_dict, f)
 
 
-# 查询金币排行
+# 查询金币额度
 def showGold(client_id, chatRoom, id):
     submit = '../json/goldSystem.json'
     with open(submit, 'r') as r:
