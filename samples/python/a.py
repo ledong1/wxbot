@@ -12,3 +12,5 @@ def weight_choice(list, weight):
 
 if __name__ == "__main__":
     print(weight_choice(['A', 'B', 'C', 'D'], [5, 2, 2, 1]))
+    a = "abc#hello"
+    print(a[1:])

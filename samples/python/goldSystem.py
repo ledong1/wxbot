@@ -110,6 +110,19 @@ def showRank(client_id, chatRoom, id):
 # 失败 自几扣钱1倍 对面加一倍
 def rob(client_id, chatRoom, fromid, toid):
 
+    if toid[0] != '#':
+        return None
+
+    toid = toid[1:]
+    toName = ''
+    infos = '../json/groupMembers.json'
+    with open(infos, 'r') as t:
+        myInfoDict = json.load(t)
+        if toid in myInfoDict:
+            toName = myInfoDict[toid]
+        else:
+            return None
+
     amount = random.randint(1,99999)
 
     submit = '../json/goldSystem.json'
@@ -139,17 +152,17 @@ def rob(client_id, chatRoom, fromid, toid):
         load_dict = json.load(r)
         if fromid in load_dict:
             if obj == "S":
-                wechat_manager.send_chatroom_at_msg(client_id, chatRoom, "大成功！获得抢劫金额1.5倍加成！"
+                wechat_manager.send_chatroom_at_msg(client_id, chatRoom, "{$@}大成功！获得抢劫金额1.5倍加成！"
                                                                          "本次抢劫获得\ud83d\udcb5 "+str(amount)+"*1.5 ["+str(amount*1.5)+"]金币\n"
                                                                         "对方失去\ud83d\udcb5 "+str(amount)+"*1.5 ["+str(amount*1.5)+"]金币",[fromid])
                 addGold(amount*1.5, fromid)
-                minsGold(amount*1.5, toid)
+                minsGold(amount*1.5, toName)
 
             elif obj == "A":
-                wechat_manager.send_chatroom_at_msg(client_id, chatRoom, "成功！本次抢劫获得\ud83d\udcb5 ["+str(amount)+"]\n"
+                wechat_manager.send_chatroom_at_msg(client_id, chatRoom, "{$@}成功！本次抢劫获得\ud83d\udcb5 ["+str(amount)+"]\n"
                                                                          "对方失去\ud83d\udcb5 ["+str(amount)+"]金币", [fromid])
                 addGold(amount, fromid)
-                minsGold(amount, toid)
+                minsGold(amount, toName)
 
             # elif obj == "F":
             #
