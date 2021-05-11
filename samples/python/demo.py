@@ -31,20 +31,17 @@ class LoginTipBot(wechat.CallbackHandler):
 
     @wechat.RECV_CALLBACK(in_class=True)
     def on_message(self, client_id, message_type, message_data):
+
+
         # 判断登录成功后，就向文件助手发条消息
         if message_type == MessageType.MT_USER_LOGIN:
             time.sleep(2)
             # wechat_manager.send_text(client_id, 'filehelper', '😂😂😂\uE052该消息通过wechat_pc_api项目接口发送')
 
-            # wechat_manager.send_link(client_id,
-            # 'filehelper',
-            # 'wechat_pc_api项目',
-            # 'WeChatPc机器人项目',
-            # 'https://github.com/smallevilbeast/wechat_pc_api',
-            # 'https://www.showdoc.com.cn/server/api/attachment/visitfile/sign/0203e82433363e5ff9c6aa88aa9f1bbe?showdoc=.jpg)')
-
-
-
+            # 获取群用户信息
+            chatRoom = "17888521126@chatroom"
+            load_dict = wechat_manager.get_chatroom_members(client_id, chatRoom)
+            print(load_dict)
 
 
         # text input
