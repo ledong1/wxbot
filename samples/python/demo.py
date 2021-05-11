@@ -44,16 +44,12 @@ class LoginTipBot(wechat.CallbackHandler):
             # 'https://www.showdoc.com.cn/server/api/attachment/visitfile/sign/0203e82433363e5ff9c6aa88aa9f1bbe?showdoc=.jpg)')
 
 
+
+
+
         # text input
         if message_type == 11046: #text recieved
-            text_11046.inputText(client_id, message_data);
-
-
-
-            # private message test passed
-            # if message_data['from_wxid'] == 'wxid_opoo5fqu2f0x12':
-            #     wechat_manager.send_text(client_id, 'wxid_opoo5fqu2f0x12', '多喝热水')
-
+            text_11046.inputText(client_id, message_data)
 
 
 

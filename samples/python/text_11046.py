@@ -1,8 +1,13 @@
-import datetime
-import json
+import datetime, wechat
+import json, goldSystem
+import random
 # 签到系统
 from wechat import WeChatManager, MessageType
+
 wechat_manager = WeChatManager(libs_path='../../libs')
+
+
+# def initMemberInfo(client_id, chatRoom):
 
 
 def signUp(client_id, chatRoom, id):
@@ -25,6 +30,7 @@ def signUp(client_id, chatRoom, id):
                                                     "\u2618\ufe0f{$@}\n\u2618\ufe0f签到成功！\n\u2618\ufe0f签到时间: " + nowDate + "\n\u2618\ufe0f今日排名: " + str(
                                                         load_dict[today].index(id) + 1) + " \n\u2618\ufe0f奖励: 100金币！",
                                                     [id])
+                goldSystem.addGold(100, id);
             else:
                 wechat_manager.send_chatroom_at_msg(client_id, chatRoom,
                                                     "\u2618\ufe0f{$@}\n\u26a0\ufe0f您已经签到请勿重复签到！",
@@ -37,6 +43,7 @@ def signUp(client_id, chatRoom, id):
                                                 "\u2618\ufe0f{$@}\n\u2618\ufe0f签到成功！\n\u2618\ufe0f签到时间: " + nowDate + "\n\u2618\ufe0f今日排名: " +
                                                 str(load_dict[today].index(id) + 1) + " \n\u2618\ufe0f奖励: 100金币！",
                                                 [id])
+            goldSystem.addGold(100, id);
 
     with open(submit, 'w') as f:
         json.dump(load_dict, f)
@@ -50,7 +57,7 @@ def inputText(client_id, message_data):
     print(message_data['room_wxid'])
     chatRoom1 = '17888521126@chatroom'  # test group
     chatRoom2 = '26095218987@chatroom'  # 老二测试
-    chatRoom3 = '27352618533@chatroom'  # mainceshi
+    chatRoom3 = '27352618533@chatroom'  # main group
     myid = "wxid_3255602555615"
 
     if message_data['room_wxid'] == chatRoom1:
@@ -68,3 +75,16 @@ def inputText(client_id, message_data):
         if (message_data['msg'] == '巧克力'):
             wechat_manager.send_chatroom_at_msg(client_id, chatRoom1, "请注意体重{$@}",
                                                 [message_data['from_wxid']])
+        if (message_data['msg'] == '查询'):
+            goldSystem.showGold(client_id, chatRoom1, message_data['from_wxid'])
+
+        if (message_data['msg'] == '刷钱测试'):
+            testa = random.randint(1, 9999)
+            goldSystem.addGold(testa, message_data['from_wxid']);
+            wechat_manager.send_chatroom_at_msg(client_id, chatRoom1,
+                                                "\ud83d\udcb5当前为测试阶段，您从\ud83d\udcb51-9999中随机获得了\ud83d\udcb5" + str(
+                                                    testa) + "金币",
+                                                [message_data['from_wxid']])
+
+        if (message_data['msg'] == '金币排行'):
+            goldSystem.showRank(client_id,chatRoom1,message_data['from_wxid'])
