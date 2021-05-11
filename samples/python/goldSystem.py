@@ -110,7 +110,7 @@ def showRank(client_id, chatRoom, id):
 # 失败 自几扣钱1倍 对面加一倍
 def rob(client_id, chatRoom, fromid, toid):
 
-    amount = random.randint(1,999)
+    amount = random.randint(1,99999)
 
     submit = '../json/goldSystem.json'
     rpFile = '../json/RP.json'
@@ -130,7 +130,6 @@ def rob(client_id, chatRoom, fromid, toid):
     PRsystem.minsRP(5, fromid)
 
     result = ["S","A","F","Z"]
-    print(p2)
     rate = [5,p2,p3,5]
     # 得出成功概率
     obj = functions.randomExm(result, rate)

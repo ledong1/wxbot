@@ -40,7 +40,7 @@ def minsRP(amount, id):
 def showRP(client_id, chatRoom, id):
     # 查询RP额度
 
-    submit = '../json/goldSystem.json'
+    submit = '../json/RP.json'
     with open(submit, 'r') as r:
         # 数据格式： {id:amount}
         load_dict = json.load(r)

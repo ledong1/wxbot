@@ -35,7 +35,7 @@ class LoginTipBot(wechat.CallbackHandler):
         # 判断登录成功后，就向文件助手发条消息
         if message_type == MessageType.MT_USER_LOGIN:
             time.sleep(2)
-            # wechat_manager.send_text(client_id, 'filehelper', '😂😂😂\uE052该消息通过wechat_pc_api项目接口发送')
+            wechat_manager.send_text(client_id, 'filehelper', '😂😂😂\uE052该消息通过wechat_pc_api项目接口发送')
 
             # 获取群用户信息
             chatRoom1 = "17888521126@chatroom"  # test

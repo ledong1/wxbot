@@ -1,5 +1,5 @@
 import datetime, wechat
-import json, goldSystem, guessMusic
+import json, goldSystem, guessMusic, PRsystem
 import random
 # 签到系统
 from wechat import WeChatManager, MessageType
@@ -55,9 +55,9 @@ def inputText(client_id, message_data):
 
     print(message_data['from_wxid'])
     print(message_data['room_wxid'])
-    chatRoom1 = '17888521126@chatroom'  # test group
+    chatRoom3 = '17888521126@chatroom'  # test group
     chatRoom2 = '26095218987@chatroom'  # 老二测试
-    chatRoom3 = '27352618533@chatroom'  # main group
+    chatRoom1 = '27352618533@chatroom'  # main group
     myid = "wxid_3255602555615"
 
     if message_data['room_wxid'] == chatRoom1:
@@ -102,3 +102,6 @@ def inputText(client_id, message_data):
             #                                     "pass!", [message_data['from_wxid']])
             toid = message_data['at_user_list'][0]
             goldSystem.rob(client_id,chatRoom1,message_data["from_wxid"], toid)
+
+        if (message_data['msg'] == 'RP查询'):
+            PRsystem.showRP(client_id,chatRoom1,message_data['from_wxid'])
