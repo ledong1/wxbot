@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 {"wxid": ["date", "times"], "2021-05-10": ["wxid_3255602555615", "LeBron1121", "wxid_5vk9vkcsh3bt12", "wxid_opoo5fqu2f0x12", "wxid_6ztx8vjar02921"]}
+=======
+<<<<<<< HEAD:samples/python/test.json
+{"wxid": ["date", "times"], "2021-05-10": ["wxid_3255602555615", "wxid_opoo5fqu2f0x12", "wxid_skci42ypt6hc12", "wxid_9f3z7s5be1i822", "wxid_mczma7olwc3812", "wxid_h61mhkk5m9r522", "wxid_wbis5sf0s7bz22", "wxid_ld7ysqy5cq9a22", "wxid_h3erfz27t33512", "wxid_0tsqy6fqku9x12", "LeBron1121"]}
+=======
+{"wxid": ["date", "times"], "2021-05-10": ["wxid_3255602555615", "LeBron1121"]}
+>>>>>>> fae600f44fec33b9b68f990e68354fc013f81860:samples/json/test.json
+>>>>>>> 9e00e3c0731689edda229d03602cb2ecd21c81e1
