@@ -90,10 +90,19 @@ def inputText(client_id, message_data):
             goldSystem.showRank(client_id, chatRoom1, message_data['from_wxid'])
 
         if (message_data['msg'] == '猜歌'):
-            text_11055.openSystem()
-            mylist = guessMusic.guessHero()
-            wechat_manager.send_video(client_id, chatRoom1, mylist[0])
-            text_11055.addAnswer(mylist[1])
+            if(text_11055.checkSystem()):
+                wechat_manager.send_chatroom_at_msg(client_id, chatRoom1,
+                                                    "{$@}猜歌正在进行~ 请上轮结束再试...",
+                                                    [message_data['from_wxid']])
+            else:
+
+                wechat_manager.send_chatroom_at_msg(client_id, chatRoom1,
+                                                    "{$@}请输入【~】 +英雄名字进行答题~",
+                                                    [message_data['from_wxid']])
+                text_11055.openSystem()
+                mylist = guessMusic.guessHero()
+                wechat_manager.send_video(client_id, chatRoom1, mylist[0])
+                text_11055.addAnswer(mylist[1])
 
         if ("打劫" in message_data['msg']):
             # wechat_manager.send_chatroom_at_msg(client_id, chatRoom1,

@@ -51,7 +51,7 @@ def addAnswer(data):
         json.dump(load_dict, w)
 
 def checkAnswer(client_id, chatRoom, id, data):
-    if "~" not in data:
+    if "~" != data[0]:
         return False
     else:
         result = data.lstrip("~")

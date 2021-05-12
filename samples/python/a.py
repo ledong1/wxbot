@@ -40,7 +40,8 @@ if __name__ == "__main__":
     value = toname.split("#")
     name = value[1]
     myList = value[2].split()
-
+    a = "AB"
+    print(a[0])
     print(name)
     print(myList[0])
     print(myList[1])
