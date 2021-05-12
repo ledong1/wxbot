@@ -31,8 +31,8 @@ class LoginTipBot(wechat.CallbackHandler):
 
     @wechat.RECV_CALLBACK(in_class=True)
     def on_message(self, client_id, message_type, message_data):
-        chatRoom1 = "17888521126@chatroom"  # test
-        chatRoom2 = '27352618533@chatroom'  # main group
+        chatRoom2 = "17888521126@chatroom"  # test
+        chatRoom1 = '27352618533@chatroom'  # main group
         # 判断登录成功后，就向文件助手发条消息
         if message_type == MessageType.MT_USER_LOGIN:
             time.sleep(2)

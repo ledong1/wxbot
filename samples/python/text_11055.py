@@ -23,7 +23,6 @@ def checkSystem():
     submit = '../json/guessMusic.json'
     with open(submit, 'r') as r:
         load_dict = json.load(r)
-        print(len(load_dict["GUESSMUSIC"]))
         if len(load_dict["GUESSMUSIC"]) > 0:
             return True
         else:
