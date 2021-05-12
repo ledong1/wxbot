@@ -109,7 +109,7 @@ def showRank(client_id, chatRoom, id):
 # 成功 抢劫1倍 对面加一倍
 # 失败 自几扣钱1倍 对面加一倍
 def rob(client_id, chatRoom, fromid, toid):
-    toid = userInformation.switchNameToID(toid)
+    toid = userInformation.switchNameToID(toid.strip())
 
     infos = '../json/groupMembers.json'
     with open(infos, 'r') as t:
