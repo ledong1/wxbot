@@ -31,13 +31,14 @@ gift_dict = {
 }
 
 # 赠送礼物
-def sendGift(client_id, chatRoom, fromid, toid, giftID, amount=1):
+def sendGift(client_id, chatRoom, fromid, toname, giftID, amount=1):
     submit = "../json/gift.json"
     # {"userId":
     #       {"giftid": 0}
     # }
 
-    # toid = userInformation.switchNameToID(toname)
+    toid = userInformation.switchNameToID(toname)
+
 
     with open(submit, "r") as f:
         load_dict = json.load(f)
@@ -53,7 +54,7 @@ def sendGift(client_id, chatRoom, fromid, toid, giftID, amount=1):
                 getGift(client_id,chatRoom,toid,giftID,amount)
                 # 甲方礼物减少
                 amountMins(fromid, giftID, amount)
-                wechat_manager.send_chatroom_at_msg(client_id,chatRoom, "{$@} 您成功赠送了对方 "+gift_dict[giftID][0]+"*"+str(amount)
+                wechat_manager.send_chatroom_at_msg(client_id,chatRoom, "{$@} 您成功赠送了:\n["+toname+"] "+gift_dict[giftID][0]+"*"+str(amount)
                                                     +"\n对方RP获得:"+str(gift_dict[giftID][1]*amount),[fromid])
 
 
@@ -61,15 +62,16 @@ def sendGift(client_id, chatRoom, fromid, toid, giftID, amount=1):
         # 用户存在礼物列表
         else:
             if giftID in load_dict[fromid]:
+
                 # 库存足够
                 if load_dict[fromid][giftID] >= amount:
                     load_dict[fromid][giftID] -= amount
                     getGift(client_id, chatRoom, toid, giftID, amount)
                     amountMins(fromid, giftID, amount)
                     wechat_manager.send_chatroom_at_msg(client_id, chatRoom,
-                                                        "{$@} 您成功赠送了对方 " + gift_dict[giftID][0] + "*" + str(amount)
-                                                        + "\n对方RP获得:" + str(gift_dict[giftID][1]*amount), [fromid])
-
+                                                        "{$@} 您成功赠送了:\n[" + toname + "] " + gift_dict[giftID][
+                                                            0] + "*" + str(amount)
+                                                        + "\n对方RP获得:" + str(gift_dict[giftID][1] * amount), [fromid])
                 else:
                     # 购买礼物
                     result = buyGift(client_id, chatRoom, fromid, giftID, amount)
@@ -78,9 +80,10 @@ def sendGift(client_id, chatRoom, fromid, toid, giftID, amount=1):
                         getGift(client_id, chatRoom, toid, giftID, amount)
                         amountMins(fromid, giftID, amount)
                         wechat_manager.send_chatroom_at_msg(client_id, chatRoom,
-                                                            "{$@} 您成功赠送了对方 " + gift_dict[giftID][0] + "*" + str(amount)
-                                                            + "\n对方RP获得:" + str(gift_dict[giftID][1]*amount), [fromid])
-
+                                                            "{$@} 您成功赠送了:\n[" + toname + "] " + gift_dict[giftID][
+                                                                0] + "*" + str(amount)
+                                                            + "\n对方RP获得:" + str(gift_dict[giftID][1] * amount),
+                                                            [fromid])
     with open(submit, "w") as write:
         json.dump(load_dict, write)
 

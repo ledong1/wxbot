@@ -100,8 +100,7 @@ def inputText(client_id, message_data):
             # wechat_manager.send_chatroom_at_msg(client_id, chatRoom1,
             #                                     "pass!", [message_data['from_wxid']])
             toname = message_data["msg"]
-            theName = toname[toname.index("#"):]
-            print(theName)
+            theName = toname[toname.index("#")+1:]
             goldSystem.rob(client_id, chatRoom1, message_data["from_wxid"], theName)
 
         if (message_data['msg'] == 'RP查询'):
@@ -110,18 +109,20 @@ def inputText(client_id, message_data):
         if ("赠送" in message_data['msg']):
             # wechat_manager.send_chatroom_at_msg(client_id, chatRoom1,
             #                                     "pass!", [message_data['from_wxid']])
+            try:
+                toname = message_data["msg"]  # abc@hello#10001,1
+                value = toname.split("#")
+                name = value[1]
+                myList = value[2].split()
 
-            toname = message_data["msg"]  # abc@hello#10001,1
-            value = toname.split("#")
-            name = value[1]
-            myList = value[2].split()
-            print()
-            if len(myList) == 1:
-                gift.sendGift(client_id, chatRoom1, message_data['from_wxid'], name, myList[0])
+                if len(myList) == 1:
+                    gift.sendGift(client_id, chatRoom1, message_data['from_wxid'], name, myList[0])
 
-            elif len(myList) == 2:
-                gift.sendGift(client_id, chatRoom1, message_data['from_wxid'], name, myList[0], int(myList[1]))
+                elif len(myList) == 2:
 
+                    gift.sendGift(client_id, chatRoom1, message_data['from_wxid'], name, myList[0], int(myList[1]))
+            except:
+                pass
         if (message_data['msg'] == '礼物菜单'):
             wechat_manager.send_chatroom_at_msg(client_id, chatRoom1,
                                                 giftmenu,
