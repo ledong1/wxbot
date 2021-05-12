@@ -1,5 +1,5 @@
 import datetime, wechat
-import json, goldSystem, guessMusic, PRsystem, gift
+import json, goldSystem, guessMusic, PRsystem, gift,text_11055
 import random
 # 签到系统
 from wechat import WeChatManager, MessageType
@@ -90,11 +90,10 @@ def inputText(client_id, message_data):
             goldSystem.showRank(client_id, chatRoom1, message_data['from_wxid'])
 
         if (message_data['msg'] == '猜歌'):
-            file1 = "C:/Develop/Python/Pyproject/wxbot/samples/herovoice/天使 奥达基/0.mp3"
-            wechat_manager.send_video(client_id, chatRoom1, file1)
-            wechat_manager.send_chatroom_at_msg(client_id, chatRoom1,
-                                                "pass!",
-                                                [message_data['from_wxid']])
+            text_11055.openSystem()
+            mylist = guessMusic.guessHero()
+            wechat_manager.send_video(client_id, chatRoom1, mylist[0])
+            text_11055.addAnswer(mylist[1])
 
         if ("打劫" in message_data['msg']):
             # wechat_manager.send_chatroom_at_msg(client_id, chatRoom1,
@@ -129,4 +128,4 @@ def inputText(client_id, message_data):
                                                 [message_data['from_wxid']])
 
         if (message_data['msg'] == 'test'):
-            pass
+            text_11055.closeSystem()

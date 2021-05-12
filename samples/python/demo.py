@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import wechat, text_11046, userInformation
+import wechat, text_11046, userInformation,guessMusic,text_11055
 import json
 import time
 from wechat import WeChatManager, MessageType
@@ -31,24 +31,28 @@ class LoginTipBot(wechat.CallbackHandler):
 
     @wechat.RECV_CALLBACK(in_class=True)
     def on_message(self, client_id, message_type, message_data):
-
+        chatRoom1 = "17888521126@chatroom"  # test
+        chatRoom2 = '27352618533@chatroom'  # main group
         # 判断登录成功后，就向文件助手发条消息
         if message_type == MessageType.MT_USER_LOGIN:
             time.sleep(2)
             wechat_manager.send_text(client_id, 'filehelper', '😂😂😂\uE052该消息通过wechat_pc_api项目接口发送')
-
-            # 获取群用户信息
-            chatRoom1 = "17888521126@chatroom"  # test
-            chatRoom2 = '27352618533@chatroom'  # main group
             load_dict1 = wechat_manager.get_chatroom_members(client_id, chatRoom1)
             load_dict2 = wechat_manager.get_chatroom_members(client_id, chatRoom2)
+        # 获取群用户信息
+
+
 
         if message_type == 11032:
             userInformation.initInfo(message_data['member_list'])
 
+
         # text input
         if message_type == 11046:  # text recieved
             text_11046.inputText(client_id, message_data)
+            if text_11055.checkSystem():
+                text_11055.addInfo(message_data['msg'])
+                text_11055.checkAnswer(client_id, chatRoom1, message_data['from_wxid'],message_data['msg'])
 
 
 if __name__ == "__main__":
