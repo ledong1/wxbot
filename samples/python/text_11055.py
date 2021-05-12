@@ -49,6 +49,7 @@ def addAnswer(data):
     with open(submit, 'w') as w:
         json.dump(load_dict, w)
 
+# the answer
 def checkAnswer(client_id, chatRoom, id, data):
     if "*" != data[0]:
         return False

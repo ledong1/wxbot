@@ -89,7 +89,7 @@ def inputText(client_id, message_data):
         if (message_data['msg'] == '金币排行'):
             goldSystem.showRank(client_id, chatRoom1, message_data['from_wxid'])
 
-        if (message_data['msg'] == '猜歌'):
+        if (message_data['msg'] == '猜英雄'):
             if(text_11055.checkSystem()):
                 wechat_manager.send_chatroom_at_msg(client_id, chatRoom1,
                                                     "{$@}猜歌正在进行~ 请上轮结束再试...",
