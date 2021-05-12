@@ -11,3 +11,11 @@ def initInfo(msg):
 
     with open(submit, 'w') as f:
         json.dump(load_dict, f)
+
+
+def switchNameToID(name):
+    submit = "../json/groupMembers.json"
+    with open(submit, 'r') as r:
+        load_dict = json.load(r)
+        return (list(load_dict.keys())[list(load_dict.values()).index(name)])
+

@@ -1,5 +1,5 @@
 # 金币系统
-import random
+import random,userInformation
 
 from wechat import WeChatManager, MessageType
 
@@ -110,10 +110,11 @@ def showRank(client_id, chatRoom, id):
 # 失败 自几扣钱1倍 对面加一倍
 def rob(client_id, chatRoom, fromid, toid):
 
-    if toid[0] != '#':
+    if toid[:1] != '#':
         return None
 
-    toid = toid[1:]
+    toname = toid[1:]
+    toid = userInformation.switchNameToID(toname)
     toName = ''
     infos = '../json/groupMembers.json'
     with open(infos, 'r') as t:
@@ -124,7 +125,6 @@ def rob(client_id, chatRoom, fromid, toid):
             return None
 
     amount = random.randint(1,99999)
-
     submit = '../json/goldSystem.json'
     rpFile = '../json/RP.json'
     p2 = 45
@@ -138,6 +138,8 @@ def rob(client_id, chatRoom, fromid, toid):
             load_dict[fromid][1] += 1
         else:
             load_dict[fromid] = [50,0]
+
+
 
     # RP扣除在打劫之后
     PRsystem.minsRP(5, fromid)
@@ -171,6 +173,22 @@ def rob(client_id, chatRoom, fromid, toid):
             else:
                 wechat_manager.send_chatroom_at_msg(client_id, chatRoom, "测试版本无法失败", [fromid])
 
+# 返回用户金额额度， 后台使用
+def getGoldAmount(id):
+    submit = '../json/goldSystem.json'
 
+    with open(submit, 'r') as r:
+        # 数据格式： {id:amount}
+        load_dict = json.load(r)
+        if id in load_dict:
+            amount = load_dict[id]
 
+        else:
+            load_dict[id] = 0
+            amount = 0
+
+    with open(submit, 'w') as f:
+        json.dump(load_dict, f)
+
+    return amount
 
