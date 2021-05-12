@@ -97,7 +97,7 @@ def inputText(client_id, message_data):
             else:
 
                 wechat_manager.send_chatroom_at_msg(client_id, chatRoom1,
-                                                    "{$@}请输入【~】 + 英雄名字进行答题~",
+                                                    "{$@}请输入【*】 + 英雄名字进行答题~",
                                                     [message_data['from_wxid']])
                 text_11055.openSystem()
                 mylist = guessMusic.guessHero()

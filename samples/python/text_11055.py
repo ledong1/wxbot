@@ -50,10 +50,10 @@ def addAnswer(data):
         json.dump(load_dict, w)
 
 def checkAnswer(client_id, chatRoom, id, data):
-    if "~" != data[0]:
+    if "*" != data[0]:
         return False
     else:
-        result = data.lstrip("~")
+        result = data.lstrip("*")
     submit = '../json/guessMusic.json'
     with open(submit, 'r') as r:
         load_dict = json.load(r)
