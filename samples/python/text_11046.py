@@ -55,9 +55,9 @@ def inputText(client_id, message_data):
     giftmenu = "===\ud83c\udf81\u793c\u7269\u5217\u8868\ud83c\udf81===\n\u540d\u79f0|\u4eba\u54c1|\u82b1\u8d39\u91d1\u5e01\n\ud83d\udca3 \u70b8\u5f39-1000\u301010000\u3011\n\u26b0\ufe0f \u68fa\u6750-500\u30105000\u3011\n\ud83d\udd4a \u9e3d\u5b50-200\u30102000\u3011\n\ud83d\udca9 \u5927\u4fbf-100\u30101000\u3011\n\ud83d\udd2a \u5200\u7247-50\u3010500\u3011\n\ud83c\udf5a \u4e0b\u996d-20\u3010200\u3011\n\u2b55 \u53e3\u7403-10\u3010100\u3011\n\ud83c\udf6c \u7cd6\u679c+1\u301010\u3011\n\ud83c\udf70 \u86cb\u7cd5+5\u301050\u3011\n\ud83e\uddf8 \u5c0f\u718a +10\u3010100\u3011\n\ud83e\udd5a \u8df3\u86cb+20\u3010200\u3011\n\ud83d\udc59 \u5185\u8863+50\u3010500\u3011\n\ud83d\udc57 \u5973\u88c5+100\u30101000\u3011\n\ud83e\udddc\ud83c\udffb\u200d\u2640\ufe0f \u624b\u529e+200\u30102000\u3011\n\ud83d\udc84 \u53e3\u7ea2+300\u30103000\u3011\n\u2328\ufe0f \u952e\u76d8+500\u30105000\u3011\n\ud83c\udfa7 \u8033\u673a+800\u30108000\u3011\n\ud83d\udc8d \u94bb\u6212+1000\u301010000\u3011\n\ud83d\udcbe \u663e\u5361 +3000\u301030000\u3011\n\ud83c\udf20 \u6d41\u661f\u96e8+5000 \u301050000\u3011\n\ud83c\udf38 \u5341\u91cc\u6843\u82b1+9999 \u301099999\u3011\n=============="
     print(message_data['from_wxid'])
     print(message_data['room_wxid'])
-    chatRoom1 = '17888521126@chatroom'  # test group
+    chatRoom3 = '17888521126@chatroom'  # test group
     chatRoom2 = '26095218987@chatroom'  # 老二测试
-    chatRoom3 = '27352618533@chatroom'  # main group
+    chatRoom1 = '27352618533@chatroom'  # main group
     myid = "wxid_3255602555615"
 
     if message_data['room_wxid'] == chatRoom1:
@@ -97,7 +97,7 @@ def inputText(client_id, message_data):
             else:
 
                 wechat_manager.send_chatroom_at_msg(client_id, chatRoom1,
-                                                    "{$@}请输入【~】 +英雄名字进行答题~",
+                                                    "{$@}请输入【~】 + 英雄名字进行答题~",
                                                     [message_data['from_wxid']])
                 text_11055.openSystem()
                 mylist = guessMusic.guessHero()
@@ -136,5 +136,5 @@ def inputText(client_id, message_data):
                                                 giftmenu,
                                                 [message_data['from_wxid']])
 
-        if (message_data['msg'] == 'test'):
+        if (message_data['msg'] == '换题'):
             text_11055.closeSystem()
