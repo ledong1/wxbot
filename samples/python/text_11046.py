@@ -1,5 +1,5 @@
 import datetime, wechat
-import json, goldSystem, guessMusic, PRsystem,gift
+import json, goldSystem, guessMusic, PRsystem, gift
 import random
 # 签到系统
 from wechat import WeChatManager, MessageType
@@ -87,8 +87,7 @@ def inputText(client_id, message_data):
                                                 [message_data['from_wxid']])
 
         if (message_data['msg'] == '金币排行'):
-            goldSystem.showRank(client_id,chatRoom1,message_data['from_wxid'])
-
+            goldSystem.showRank(client_id, chatRoom1, message_data['from_wxid'])
 
         if (message_data['msg'] == '猜歌'):
             file1 = "C:/Develop/Python/Pyproject/wxbot/samples/herovoice/天使 奥达基/0.mp3"
@@ -103,33 +102,30 @@ def inputText(client_id, message_data):
             toname = message_data["msg"]
             theName = toname[toname.index("#"):]
             print(theName)
-            goldSystem.rob(client_id,chatRoom1,message_data["from_wxid"], theName)
+            goldSystem.rob(client_id, chatRoom1, message_data["from_wxid"], theName)
 
         if (message_data['msg'] == 'RP查询'):
-            PRsystem.showRP(client_id,chatRoom1,message_data['from_wxid'])
+            PRsystem.showRP(client_id, chatRoom1, message_data['from_wxid'])
 
         if ("赠送" in message_data['msg']):
             # wechat_manager.send_chatroom_at_msg(client_id, chatRoom1,
             #                                     "pass!", [message_data['from_wxid']])
-            toname = message_data["msg"] #abc@hello#10001,1
 
+            toname = message_data["msg"]  # abc@hello#10001,1
+            value = toname.split("#")
+            name = value[1]
+            myList = value[2].split()
+            print()
+            if len(myList) == 1:
+                gift.sendGift(client_id, chatRoom1, message_data['from_wxid'], name, myList[0])
 
-            try:
-                value = toname[toname.index("#") + 1:]
-                name = message_data["at_user_list"][0]
-                myList = value.split(" ")
-
-                if len(myList) == 1:
-                    gift.sendGift(client_id, chatRoom1, message_data['from_wxid'], name, myList[0])
-
-                elif len(myList) == 2:
-                    gift.sendGift(client_id, chatRoom1, message_data['from_wxid'], name, myList[0], int(myList[1]))
-            except ValueError:
-                pass
+            elif len(myList) == 2:
+                gift.sendGift(client_id, chatRoom1, message_data['from_wxid'], name, myList[0], int(myList[1]))
 
         if (message_data['msg'] == '礼物菜单'):
             wechat_manager.send_chatroom_at_msg(client_id, chatRoom1,
                                                 giftmenu,
                                                 [message_data['from_wxid']])
 
-
+        if (message_data['msg'] == 'test'):
+            pass

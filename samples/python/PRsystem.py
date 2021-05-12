@@ -15,7 +15,7 @@ def addRP(amount, id):
             load_dict[id][0] += amount
 
         else:
-            load_dict[id][0] = 50 + amount
+            load_dict[id] = [50,0]
 
     with open(submit, 'w') as f:
         json.dump(load_dict, f)
@@ -56,3 +56,14 @@ def showRP(client_id, chatRoom, id):
 
     with open(submit, 'w') as f:
         json.dump(load_dict, f)
+
+# 返回用户ＲＰ，后台使用
+def showRPBack(id):
+    submit = '../json/RP.json'
+    with open(submit, 'r') as r:
+        # 数据格式： {id:amount}
+        load_dict = json.load(r)
+        if id in load_dict:
+            return load_dict[id][0]
+        else:
+            return 50

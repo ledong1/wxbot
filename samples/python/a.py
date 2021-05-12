@@ -36,9 +36,11 @@ if __name__ == "__main__":
 
     }
 
-    toname = "abc@123#10000,1"  # abc@hello#10001,1
-    value = toname[toname.index("#") + 1:]
+    toname = "abc#123#10000 1"  # abc@hello#10001,1
+    value = toname.split("#")
+    name = value[1]
+    myList = value[2].split()
 
-    myList = value.split(",")
-
+    print(name)
+    print(myList[0])
     print(myList[1])

@@ -39,7 +39,6 @@ def sendGift(client_id, chatRoom, fromid, toid, giftID, amount=1):
 
     # toid = userInformation.switchNameToID(toname)
 
-
     with open(submit, "r") as f:
         load_dict = json.load(f)
         # 用户不存在礼物列表
