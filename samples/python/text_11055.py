@@ -61,12 +61,12 @@ def checkAnswer(client_id, chatRoom, id, data):
         if "ANSWER" in load_dict:
             if result in load_dict["ANSWER"]:
                 wechat_manager.send_chatroom_at_msg(client_id, chatRoom,
-                                                    "你猜对啦! 获得金币10000!",
+                                                    "{$@}你猜对啦! 获得金币10000!",
                                                     [id])
                 closeSystem()
             else:
                 wechat_manager.send_chatroom_at_msg(client_id, chatRoom,
-                                                    "你猜错了! 再来一次吧!",
+                                                    "{$@}你猜错了! 再来一次吧!",
                                                     [id])
 
                 staySystem()
